@@ -14,41 +14,60 @@
             <label for="level" class="label">Select Level &nbsp;&nbsp; </label>
             <div class="dropdown">
                 <select id="level" name="level" class="dropdown-button" required>
-                    <div class="dropdown-menu">
                     <option value="1">Level 1 (Up to 5 tables)</option>
                     <option value="2">Level 2 (Up to 10 tables)</option>
                     <option value="3">Level 3 (Up to 12 tables)</option>
                     <option value="4">Level 4 (Up to 15 tables)</option>
                     <option value="5">Level 5 (Up to 20 tables)</option>
-                    </div>
                 </select>
             </div>
             <br><br>
 
             <label for="timer" class="label">Select Timer  &nbsp;&nbsp;</label>
             <div class="dropdown">
-            <select id="timer" name="timer" class="dropdown-button" required>
-                <div class="dropdown-menu">
-                <option value="1">1 Minute</option>
-                <option value="2">2 Minutes</option>
-                <option value="3">3 Minutes</option>
-                <option value="4">4 Minute</option>
-                <option value="5">5 Minutes</option>
-                <option value="6">6 Minutes</option>
-                <option value="7">7 Minute</option>
-                <option value="8">8 Minutes</option>
-                <option value="9">9 Minutes</option>
-                <option value="10">10 Minute</option>
-                </div>
-            </select>
+                <select id="timer" name="timer" class="dropdown-button" required>
+                    <option value="1">1 Minute</option>
+                    <option value="2">2 Minutes</option>
+                    <option value="3">3 Minutes</option>
+                    <option value="4">4 Minute</option>
+                    <option value="5">5 Minutes</option>
+                    <option value="6">6 Minutes</option>
+                    <option value="7">7 Minute</option>
+                    <option value="8">8 Minutes</option>
+                    <option value="9">9 Minutes</option>
+                    <option value="10">10 Minute</option>
+                </select>
             </div>
-
             <br><br>
-
-            <button type="submit" class="button">Start Quiz</button>
+            <button type="submit" id="startQuizButton" class="button">Start Quiz</button>
         </form>
-
     </div>
+
+    <script>
+        // Define the speakSlow function only for the home page
+        function speakSlow(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.7; // Adjust the speed
+            speechSynthesis.speak(utterance);
+        }
+
+        window.onload = function () {
+            // Only run the speech function on the home page
+            if (document.getElementById('startQuizButton')) {
+                speakSlow("Welcome to fun Maths Game by Suvignana");
+            } else {
+                console.log("No startQuizButton found, skipping speech.");
+            }
+
+            // Focus the start button
+            const startQuizButton = document.getElementById('startQuizButton');
+            if (startQuizButton) {
+                startQuizButton.focus();
+            } else {
+                console.error('Start Quiz button not found!');
+            }
+        };
+    </script>
 </div>
 </body>
 </html>
