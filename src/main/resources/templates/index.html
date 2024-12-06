@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Quiz</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="page-heading">Welcome to fun Maths Game</h1>
+    <div class="content">
+        <form action="/start-quiz" method="get">
+            <label for="level" class="label">Select Level &nbsp;&nbsp; </label>
+            <div class="dropdown">
+                <select id="level" name="level" class="dropdown-button" required>
+                    <div class="dropdown-menu">
+                    <option value="1">Level 1 (Up to 5 tables)</option>
+                    <option value="2">Level 2 (Up to 10 tables)</option>
+                    <option value="3">Level 3 (Up to 12 tables)</option>
+                    <option value="4">Level 4 (Up to 15 tables)</option>
+                    <option value="5">Level 5 (Up to 20 tables)</option>
+                    </div>
+                </select>
+            </div>
+            <br><br>
+
+            <label for="timer" class="label">Select Timer  &nbsp;&nbsp;</label>
+            <div class="dropdown">
+            <select id="timer" name="timer" class="dropdown-button" required>
+                <div class="dropdown-menu">
+                <option value="1">1 Minute</option>
+                <option value="2">2 Minutes</option>
+                <option value="3">3 Minutes</option>
+                <option value="4">4 Minute</option>
+                <option value="5">5 Minutes</option>
+                <option value="6">6 Minutes</option>
+                <option value="7">7 Minute</option>
+                <option value="8">8 Minutes</option>
+                <option value="9">9 Minutes</option>
+                <option value="10">10 Minute</option>
+                </div>
+            </select>
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="button">Start Quiz</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,301 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    min-height: 750px;
+    height: 100%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #f0f3f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align:center;
+}
+
+.question {
+    background-color: #0384e0; /* Darker Blue */
+    color: white;
+    text-align: center;
+    padding: 16px;
+    border-radius:5px;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.page-heading {
+    position: relative;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    -webkit-font-smoothing: antialiased !important;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+    color: #37a7e9;
+    background: #d7edfb;
+    margin-bottom: 30px;
+    line-height: 32px;
+    padding: 10px 25px;
+    z-index: 10;
+}
+
+.answer-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button {
+    background-color: #4CAF50; /* Light orange */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin:40px auto;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #2f9d33;
+}
+
+/* Label styling */
+.label {
+    font-size: 22px;
+    font-weight: bold;
+    color: #444; /* Match button color */
+    margin-bottom: 8px;
+    display: inline-block; /* Ensure proper spacing and alignment */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.label:hover {
+    color: #45a049; /* Match button hover color */
+}
+
+/* Question-Answer container styling */
+.question-answer-container {
+    margin: 20px auto;
+    max-width: 600px; /* Centered and responsive */
+    text-align: center; /* Aligns text and elements */
+}
+
+/* Hide increment/decrement arrows for number input */
+.answer-box::-webkit-outer-spin-button,
+.answer-box::-webkit-inner-spin-button {
+    -webkit-appearance: none;  /* Removes the spin button in Webkit browsers (Chrome, Safari) */
+    margin: 0;  /* Removes any margin applied */
+}
+
+.answer-box[type="number"] {
+    -moz-appearance: textfield; /* Removes the spinner in Firefox */
+}
+
+/* Answer box styling */
+.answer-box {
+    margin: 0px auto;
+    height: 60px; /* Large enough for readability */
+    padding: 10px;
+    font-size: 50px;
+    line-height: 1.5;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    border: 2px solid #ccc; /* Light orange border */
+    border-radius: 5px;
+    outline: none;
+    resize: none; /* Disables resizing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect */
+.answer-box:focus {
+    border-color: #ccc;
+    box-shadow: 0px 4px 10px rgba(255, 140, 0, 0.4); /* Glow effect */
+}
+
+/* Placeholder text styling */
+.answer-box::placeholder {
+    color: #ccc; /* Light grey for guidance */
+    font-style: italic;
+    font-size: 24px;
+    text-align: center; /* Horizontally center the placeholder */
+    line-height: 4;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button styling */
+.dropdown-button {
+    background-color: #0095ff; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-button:hover {
+    background-color: #0384e0; /* Darker Blue */
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px 0;
+    z-index: 1;
+    min-width: 160px;
+}
+
+/* Dropdown links styling */
+.dropdown-menu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #0384e0;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.wrong {
+    background-color: #f44336;
+    color: white;
+}
+
+.side {
+    position: absolute;
+    height: 100%;
+    width: 180px;
+    border-right: 1px solid #e3e4e6;
+    box-sizing: border-box; /* Ensure padding/borders are included in width */
+}
+
+.clock-wrapper {
+    width: 100%;
+    padding: 30px 40px 20px;
+    border-bottom: 1px solid #e3e4e6;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.clock {
+    text-align: center;
+    background: #FFF;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #e3e4e6;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #ff9000;
+}
+
+.progress-wrapper {
+    width: calc(100% - 20px); /* Subtract padding to prevent overflow */
+    padding: 0 10px; /* Padding inside the progress wrapper */
+    box-sizing: border-box; /* Ensure padding is included within width calculation */
+    margin-top: 20px; /* Add space between clock and progress */
+}
+
+.progress-wrapper .row {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.progress-wrapper .row .blok {
+    display: flex;               /* Enables Flexbox layout */
+    align-items: center;         /* Vertically aligns items in the center */
+    justify-content: center;     /* Centers items horizontally */
+    width: 100%;
+    color: #FFF;
+    font-size: 20px;
+    padding: 7px 10px 5px;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    background: #00aaf0;
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#scoreText {
+    font-size: 20px; /* Adjust the font size for the score text */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Adjust container padding for small screens */
+    }
+
+    .side {
+        width: 100% !important; /* Sidebar should take full width */
+        margin-top: 20px; /* Add some margin if necessary */
+        order: -1; /* Move the side content to the top */
+    }
+
+    .question-answer-container {
+        margin-top: 0; /* Adjust top margin for the question-answer container */
+    }
+
+    /* Adjust clock and progress wrapper layout */
+    .clock-wrapper, .progress-wrapper {
+        padding: 10px; /* Reduce padding for mobile */
+    }
+
+    .question {
+        font-size: 2rem; /* Reduce font size for mobile screens */
+    }
+
+    .answer-box {
+        font-size: 40px; /* Adjust font size for mobile input */
+    }
+
+    .button {
+        font-size: 14px; /* Adjust button size for mobile */
+    }
+
+    /* Ensure the progress block is displayed correctly */
+    .progress-wrapper .row .blok {
+        font-size: 18px; /* Adjust font size for mobile */
+    }
+
+    #scoreText {
+        font-size: 16px; /* Adjust font size for score on mobile */
+    }
+}
