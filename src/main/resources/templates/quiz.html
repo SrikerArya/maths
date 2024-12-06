@@ -9,7 +9,23 @@
         let timeRemaining = [[${timer}]];
         let totalQuestionsAsked = 0; // Track the total number of questions asked
 
-        console.log('Time remaining started: ', timeRemaining);
+        console.log('Initial time remaining: ', timeRemaining);
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                // Replace "x" with "times" for proper pronunciation
+                const modifiedText = text.replace(/ x /g, ' times ');
+
+                const utterance = new SpeechSynthesisUtterance(modifiedText);
+                utterance.lang = 'en-US'; // Set the language
+                utterance.rate = 1.5; // Increase the speaking rate (1.5 is faster than normal)
+                utterance.pitch = 1; // Keep the pitch normal (optional, adjust if needed)
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                console.error("Speech Synthesis API is not supported in this browser.");
+            }
+        }
 
         function startTimer() {
             const timerElement = document.getElementById("timer");
@@ -18,11 +34,11 @@
             const interval = setInterval(async function () {
                 if (timeRemaining <= 0) {
                     clearInterval(interval);
-                    alert("Time is up! Submitting your score.");
+                    alert("Time is up! Submitting your score...");
 
                     // Prepare data to submit
                     const data = {
-                        timeRemaining: timeRemaining.toString(),
+                        timeRemaining: 0, // No time remaining
                         answer: '' // No answer because time has run out
                     };
 
@@ -32,7 +48,7 @@
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify(data), // Send as JSON
+                            body: JSON.stringify(data),
                         });
 
                         if (!response.ok) {
@@ -50,59 +66,75 @@
                     }
                 } else {
                     timeRemaining--;
-                    timerElement.innerHTML = `${timeRemaining}`;
-                    hiddenTimerInput.value = timeRemaining;
+                    timerElement.textContent = timeRemaining; // Update the visible timer
+                    hiddenTimerInput.value = timeRemaining; // Sync hidden input with timer
                     console.log('Time remaining: ', timeRemaining);
                 }
             }, 1000);
         }
 
-        function submitAnswer() {
+        async function submitAnswer() {
             const answerInput = document.getElementById("answerInput");
             const timeRemainingInput = document.getElementById("timeRemainingInput");
             const questionText = document.getElementById("questionText");
             const scoreText = document.getElementById("scoreText");
-            const questionCountText = document.getElementById("questionCountText");
 
             const data = {
-                answer: answerInput.value,
-                timeRemaining: timeRemainingInput.value
+                answer: answerInput.value.trim(), // Get user input (trimmed)
+                timeRemaining: timeRemainingInput.value // Include time remaining
             };
 
-            fetch('/submit-answer', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(result => {
-                // Update the UI with the new question, score, etc.
-                questionText.innerText = result.question;
+            try {
+                const response = await fetch('/submit-answer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
 
-                // Increment total questions asked
-                totalQuestionsAsked++;
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
-                scoreText.innerText = `${result.score} / ${totalQuestionsAsked}`;
+                const result = await response.json();
 
-                answerInput.value = ""; // Clear the input
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                if (result.end) {
+                    // Redirect to results page if the quiz has ended
+                    window.location.href = `/quiz-results?score=${result.score}&totalQuestions=${totalQuestionsAsked}`;
+                } else {
+                    // Update the question and score
+                    questionText.textContent = result.question;
+
+                    // Speak the new question
+                    speak(result.question);
+
+                    totalQuestionsAsked++;
+                    scoreText.textContent = `${result.score} / ${totalQuestionsAsked}`;
+                    answerInput.value = ""; // Clear the input for the next question
+                }
+            } catch (error) {
+                console.error('Error submitting answer:', error);
+            }
         }
 
         window.onload = function () {
-            startTimer(); // Start the timer when the page loads
-            document.getElementById('answerInput').focus();
+            const questionText = document.getElementById("questionText").textContent;
+
+            // Speak the initial question when the page loads
+            speak(questionText);
+
+            startTimer(); // Start the timer on page load
+            document.getElementById('answerInput').focus(); // Focus the input for better UX
         };
     </script>
 </head>
 <body>
 <div class="container">
     <div class="content">
-        <h1 class="page-heading">Multiplications - Level: <span th:text="${level}">1</span></h1>
+        <h1 class="page-heading">
+            Multiplications - Level: <span th:text="${level}">1</span>
+        </h1>
         <div class="side">
             <div class="clock-wrapper">
                 <div class="clock" id="timer" style="background: rgb(255, 255, 255);">
@@ -120,19 +152,19 @@
         </div>
 
         <div class="question-answer-container">
-            <div class="question"><span id="questionText" th:text="${question}">What is 1 x 1?</span> =
+            <div class="question">
+                <span id="questionText" th:text="${question}">What is 1 x 1?</span> =
             </div>
             <div class="answer">
                 <form id="quizForm" onsubmit="event.preventDefault(); submitAnswer();">
                     <input type="number" class="answer-box" id="answerInput" name="answer"
-                           placeholder="Enter your answer" required/>
-                    <input type="hidden" id="timeRemainingInput" name="timeRemaining" th:value="${timer}"/>
+                           placeholder="Enter your answer" required />
+                    <input type="hidden" id="timeRemainingInput" name="timeRemaining" th:value="${timer}" />
                     <button type="submit" class="button">Submit Answer</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>
