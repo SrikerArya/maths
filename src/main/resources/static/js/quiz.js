@@ -153,33 +153,28 @@
         const closeModalButton = document.getElementById('closeModalButton');
         const noButton = document.getElementById('noButton');
 
-        // Activate modal and backdrop
-        modal.classList.add('active');
-        backdrop.classList.add('active');
+        modal.style.display = 'block';
 
         // Trigger speech and close modal when user clicks "Enable Audio"
         enableAudioButton.addEventListener('click', function () {
             speak(questionText);
             audioEnabled++;
             console.log("Audio score ", audioEnabled)
-            modal.classList.remove('active');
-            backdrop.classList.remove('active');
+            modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
         });
 
         // Close modal when the "No" button is clicked
         noButton.addEventListener('click', function () {
-            modal.classList.remove('active');
-            backdrop.classList.remove('active');
+            modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
         });
 
         // Close modal when the "X" button is clicked
         closeModalButton.addEventListener('click', function () {
-            modal.classList.remove('active');
-            backdrop.classList.remove('active');
+            modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
         });
