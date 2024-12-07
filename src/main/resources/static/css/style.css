@@ -257,6 +257,106 @@ body {
     font-size: 20px; /* Adjust the font size for the score text */
 }
 
+/* Modal Styles */
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: none; /* Initially hidden */
+    position: relative; /* For positioning the close button */
+}
+
+#modal.active {
+    display: flex;
+}
+
+#modal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#modal p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#modal .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add space between the buttons */
+    margin-top: 15px;
+}
+
+#modal button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#modal button:hover {
+    background-color: #45a049;
+}
+
+/* No Button Styles */
+#noButton {
+    background-color: #d32f2f;
+}
+
+#noButton:hover {
+    background-color: #b71c1c;
+}
+
+/* Close (X) Button Styles */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+}
+
+.close-button:hover {
+    color: #d32f2f;
+}
+
+/* Backdrop for the modal */
+#backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none; /* Initially hidden */
+}
+
+#backdrop.active {
+    display: block;
+}
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .container {

@@ -1,5 +1,6 @@
     let timeRemaining = window.initialTimeRemaining;
     let totalQuestionsAsked = 0; // Track the total number of questions asked
+    let audioEnabled = 0;
 
     console.log('Time remaining started: ', timeRemaining);
 
@@ -26,7 +27,7 @@
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US'; // Set the language
-            utterance.rate = 1; // Set the speaking rate (1 is normal)
+            utterance.rate = 0.8; // Set the speaking rate (1 is normal)
             window.speechSynthesis.speak(utterance);
         } else {
             console.error("Speech Synthesis API is not supported in this browser.");
@@ -114,8 +115,12 @@
                 // Update the question and score
                 questionText.textContent = result.question;
 
-                // Speak the new question
-                speak(result.question);
+                console.log("Audio enabled ", audioEnabled > 0)
+
+                if (audioEnabled > 0) {
+                    // Speak the new question
+                    speak(result.question);
+                }
 
                 totalQuestionsAsked++;
                 scoreText.textContent = `${result.score} / ${totalQuestionsAsked}`;
@@ -126,11 +131,57 @@
         }
     }
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const questionText = document.getElementById("questionText").textContent;
+        const submitAnswerButton = document.getElementById('submitAnswer');
+
+        if (submitAnswerButton) {
+            submitAnswerButton.addEventListener('click', function () {
+                document.getElementById('answerInput').focus();
+            });
+        }
+    });
+
+    // Show the modal on page load
     window.onload = function () {
         const questionText = document.getElementById("questionText").textContent;
-        // Speak the initial question when the page loads
-        speak(questionText);
+        console.log('Question Text', questionText)
 
-        startTimer(); // Start the timer when the page loads
-        document.getElementById('answerInput').focus();
+        const modal = document.getElementById('modal');
+        const backdrop = document.getElementById('backdrop');
+        const enableAudioButton = document.getElementById('enableAudioButton');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const noButton = document.getElementById('noButton');
+
+        // Activate modal and backdrop
+        modal.classList.add('active');
+        backdrop.classList.add('active');
+
+        // Trigger speech and close modal when user clicks "Enable Audio"
+        enableAudioButton.addEventListener('click', function () {
+            speak(questionText);
+            audioEnabled++;
+            console.log("Audio score ", audioEnabled)
+            modal.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.getElementById('answerInput').focus();
+            startTimer(); // Start the timer when the page loads
+        });
+
+        // Close modal when the "No" button is clicked
+        noButton.addEventListener('click', function () {
+            modal.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.getElementById('answerInput').focus();
+            startTimer(); // Start the timer when the page loads
+        });
+
+        // Close modal when the "X" button is clicked
+        closeModalButton.addEventListener('click', function () {
+            modal.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.getElementById('answerInput').focus();
+            startTimer(); // Start the timer when the page loads
+        });
+
     };

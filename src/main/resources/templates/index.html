@@ -43,31 +43,8 @@
         </form>
     </div>
 
-    <script>
-        // Define the speakSlow function only for the home page
-        function speakSlow(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 0.7; // Adjust the speed
-            speechSynthesis.speak(utterance);
-        }
 
-        window.onload = function () {
-            // Only run the speech function on the home page
-            if (document.getElementById('startQuizButton')) {
-                speakSlow("Welcome to fun Maths Game by Suvignana");
-            } else {
-                console.log("No startQuizButton found, skipping speech.");
-            }
 
-            // Focus the start button
-            const startQuizButton = document.getElementById('startQuizButton');
-            if (startQuizButton) {
-                startQuizButton.focus();
-            } else {
-                console.error('Start Quiz button not found!');
-            }
-        };
-    </script>
 </div>
 </body>
 </html>
