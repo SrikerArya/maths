@@ -12,10 +12,53 @@
 <div class="container">
     <h1 class="page-heading">Quiz Over!</h1>
     <div class="content">
-        <p class="question">Your final score: <span th:text="${score}">0</span> / <span th:text="${totalQuestions}">0</span></p>
+        <p class="question">
+            Your final score: <span id="score" th:text="${score}">0</span> / <span id="totalQuestions" th:text="${totalQuestions}">0</span>
+        </p>
+        <h1 class="message" id="message"></h1> <!-- For displaying the additional message -->
         <br><br>
         <a href="/" class="button">Start New Quiz</a>
     </div>
 </div>
+
+<script>
+    // Function to calculate percentage, decide the message, and speak the result
+    function speakFinalScore() {
+        const score = parseInt(document.getElementById('score').textContent);
+        const totalQuestions = parseInt(document.getElementById('totalQuestions').textContent);
+        const percentage = Math.round((score / totalQuestions) * 100);
+
+        let message = '';
+
+        // Determine the message based on the score percentage
+        if (percentage === 100) {
+            message = `Excellent job, keep moving!`;
+        } else if (percentage > 70) {
+            message = `Good job, but practice more!`;
+        } else if (percentage > 35) {
+            message = `Passed, but need to practice more!`;
+        } else {
+            message = `It's a fail. Practice more and more!`;
+        }
+
+        // Display the message in the DOM
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = `Your percentage is ${percentage}%. ${message}`;
+
+        // Speak the result
+        const text = `Your final score is ${score} out of ${totalQuestions}. Your percentage is ${percentage}%. ${message} thank you for playing Suvi, Sumi.`;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';  // Set the language
+        utterance.rate = 1;        // Normal speaking rate
+        utterance.pitch = 1;       // Normal pitch
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Call the function when the page loads
+    window.onload = function() {
+        speakFinalScore();
+    };
+</script>
+
 </body>
 </html>

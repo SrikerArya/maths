@@ -14,21 +14,10 @@
 
             const utterance = new SpeechSynthesisUtterance(modifiedText);
             utterance.lang = 'en-US'; // Set the language
-            utterance.rate = 1.5; // Increase the speaking rate (1.5 is faster than normal)
+            utterance.rate = 1; // Increase the speaking rate (1.5 is faster than normal)
             utterance.pitch = 1; // Normal pitch
             window.speechSynthesis.speak(utterance);
 
-        } else {
-            console.error("Speech Synthesis API is not supported in this browser.");
-        }
-    }
-
-    function speakSlow(text) {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US'; // Set the language
-            utterance.rate = 0.8; // Set the speaking rate (1 is normal)
-            window.speechSynthesis.speak(utterance);
         } else {
             console.error("Speech Synthesis API is not supported in this browser.");
         }
@@ -41,9 +30,8 @@
         const interval = setInterval(async function () {
             if (timeRemaining <= 0) {
                 clearInterval(interval);
-                speakSlow("Time is up. Submit your score.");
+                speak("Time is up. Submit your score.");
                 alert("Time is up! Submit your score.");
-                speakSlow("Please check your score.");
 
                 // Prepare data to submit
                 const data = {
