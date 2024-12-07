@@ -132,7 +132,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const questionText = document.getElementById("questionText").textContent;
         const submitAnswerButton = document.getElementById('submitAnswer');
 
         if (submitAnswerButton) {
@@ -153,7 +152,9 @@
         const closeModalButton = document.getElementById('closeModalButton');
         const noButton = document.getElementById('noButton');
 
-        modal.style.display = 'block';
+        if (modal) {
+            modal.style.display = 'block';
+        }
 
         // Trigger speech and close modal when user clicks "Enable Audio"
         enableAudioButton.addEventListener('click', function () {
