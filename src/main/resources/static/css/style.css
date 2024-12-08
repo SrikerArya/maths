@@ -26,6 +26,7 @@ body {
     font-size: 3.5rem;
     font-weight: bold;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .page-heading {
@@ -293,6 +294,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
 }
 
 .modal-header button {
@@ -307,13 +309,15 @@ body {
     font-size: 1rem;
     margin-bottom: 20px;
     color: #555;
+    position: relative;
+    text-align: center;
 }
 
 /* Footer Buttons */
 .modal-footer {
-    display: inline;
-    justify-content: flex-end;
-    gap: 12px;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
 }
 
 .modal-footer button {
@@ -361,12 +365,16 @@ body {
 }
 
 .spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4caf50; /* Green color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: absolute; /* Use absolute positioning to center */
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%); /* Center the spinner */
 }
 
 @keyframes spin {
@@ -381,6 +389,16 @@ body {
 /* Ensure main content is hidden by default */
 #main-content {
   display: none;
+}
+
+.speaker-icon {
+    font-size: 2.5rem; /* Adjust size to match the button */
+    vertical-align: middle; /* Align icon with text */
+}
+
+/* Remove underline from links */
+#listenResultsButton {
+    text-decoration: none;
 }
 
 /* Mobile-specific styles */

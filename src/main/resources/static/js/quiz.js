@@ -30,8 +30,8 @@
         const interval = setInterval(async function () {
             if (timeRemaining <= 0) {
                 clearInterval(interval);
-                speak("Time is up. Submit your score.");
-                alert("Time is up! Submit your score.");
+                speak("Time is up!");
+//                alert("Time is up! Submit your score.");
 
                 // Prepare data to submit
                 const data = {
