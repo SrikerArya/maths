@@ -119,7 +119,7 @@
                 // Reset the icon to unmuted (fa-volume-up)
                 speakerIcon.classList.remove('fa-volume-mute');
                 speakerIcon.classList.add('fa-volume-up');
-                isMuted = true; // Set to muted after speech ends
+                isSpeaking = false;
             };
         } else {
             console.error("Speech Synthesis API is not supported in this browser.");
