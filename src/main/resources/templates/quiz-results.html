@@ -29,7 +29,11 @@
 
             const score = parseInt(document.getElementById('score').textContent);
             const totalQuestions = parseInt(document.getElementById('totalQuestions').textContent);
-            const percentage = Math.round((score / totalQuestions) * 100);
+            let percentage = 0;
+            if (totalQuestions !== 0) {
+                percentage = Math.round((score / totalQuestions) * 100);
+            }
+
             let message = '';
 
             // Determine the message based on the score percentage

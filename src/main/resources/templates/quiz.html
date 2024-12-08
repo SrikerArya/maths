@@ -17,17 +17,17 @@
     <div class="content">
         <h1 class="page-heading">Multiplications - Level: <span th:text="${level}">1</span></h1>
         <div class="side">
-            <div class="clock-wrapper">
-                <div class="clock" id="timer" style="background: rgb(255, 255, 255);">
-                    <p><span th:text="${timer}">60</span></p>
-                </div>
-            </div>
             <div class="progress-wrapper">
                 <div class="row">
                     <div class="blok icon-clock">
                         <i class="fas fa-check-circle" style="font-size: 20px; margin-right: 10px;"></i>
                         <span id="scoreText" th:text="${score}">0 / 0</span>
                     </div>
+                </div>
+            </div>
+            <div class="clock-wrapper">
+                <div class="clock" id="timer" style="background: rgb(255, 255, 255);">
+                    <p><span th:text="${timer}">60</span></p>
                 </div>
             </div>
         </div>

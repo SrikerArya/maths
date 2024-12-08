@@ -368,7 +368,7 @@ body {
     }
 
     .question-answer-container {
-        padding: 10px; /* Add padding for spacing */
+        padding: 5px 10px 10px 10px; /* Add padding for spacing */
         margin-top: 0; /* Avoid unnecessary top margin */
         clear: both; /* Clear any floated elements */
     }
@@ -410,28 +410,14 @@ body {
         width: 100%; /* Full width for buttons */
         padding: 10px 20px; /* Adjust padding */
         font-size: 16px; /* Adjust font size */
+        margin: 20px auto 2px auto;
     }
-
-    /* .button {
-        font-size: 14px;
-        padding: 8px 15px;
-    } */
 
     .dropdown-button {
         width: 100%; /* Make the dropdown take up the full width */
         box-sizing: border-box; /* Include padding and border in width calculation */
         font-size: 16px;
     }
-
-    /*.question {
-        font-size: 2rem;
-        padding: 12px;  Adjust padding for mobile
-    }*/
-
-    /*.answer-box {
-        height: 50px;
-        font-size: 28px;  Adjust font size
-    }*/
 
     .dropdown {
         display: block; /* Stack dropdown elements vertically */
@@ -453,12 +439,8 @@ body {
     }
 
     .clock-wrapper {
-        padding: 10px;
+        padding: 5px;
     }
-
-    /*.clock {
-        margin: 0 auto;
-    }*/
 
     .side .blok.icon-clock {
         display: inline-flex;
@@ -470,11 +452,6 @@ body {
         /* padding: 0;  /* to make the full width */
         margin-top: 10px;
     }
-
-    /*.progress-wrapper .row .blok {
-        font-size: 16px;
-        padding: 5px 10px;
-    }*/
 
     .progress-wrapper .row .blok {
         font-size: 14px; /* Adjust progress font size */
