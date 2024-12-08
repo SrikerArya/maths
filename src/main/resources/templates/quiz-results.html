@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
-    <link rel="stylesheet" href="/css/style.css?v=1.1">
+    <link rel="stylesheet" href="/css/style.css?v=1.2">
 </head>
 
 <body>
@@ -22,36 +22,43 @@
 </div>
 
 <script>
-    // Function to calculate percentage, decide the message, and speak the result
-    function speakFinalScore() {
-        const score = parseInt(document.getElementById('score').textContent);
-        const totalQuestions = parseInt(document.getElementById('totalQuestions').textContent);
-        const percentage = Math.round((score / totalQuestions) * 100);
+    function speakFinalScore(text) {
+        if ('speechSynthesis' in window) {
+            // Stop any ongoing speech
+            window.speechSynthesis.cancel();
 
-        let message = '';
+            const score = parseInt(document.getElementById('score').textContent);
+            const totalQuestions = parseInt(document.getElementById('totalQuestions').textContent);
+            const percentage = Math.round((score / totalQuestions) * 100);
+            let message = '';
 
-        // Determine the message based on the score percentage
-        if (percentage === 100) {
-            message = `Excellent job, keep moving!`;
-        } else if (percentage > 70) {
-            message = `Good job, but practice more!`;
-        } else if (percentage > 35) {
-            message = `Passed, but need to practice more!`;
+            // Determine the message based on the score percentage
+            if (percentage === 100) {
+                message = `Excellent job, keep moving!`;
+            } else if (percentage > 70) {
+                message = `Good job, but practice more!`;
+            } else if (percentage > 35) {
+                message = `Passed, but need to practice more!`;
+            } else {
+                message = `It's a fail. Practice more and more!`;
+            }
+
+            // Display the message in the DOM
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = `Your percentage is ${percentage}%. ${message}`;
+
+            // Speak the result
+            const text = `Your final score is ${score} out of ${totalQuestions}. Your percentage is ${percentage}%. ${message}. Thank you for playing.`;
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US'; // Set the language
+            utterance.rate = 1; // Increase the speaking rate (1.5 is faster than normal)
+            utterance.pitch = 1; // Normal pitch
+            window.speechSynthesis.speak(utterance);
+
         } else {
-            message = `It's a fail. Practice more and more!`;
+            console.error("Speech Synthesis API is not supported in this browser.");
         }
-
-        // Display the message in the DOM
-        const messageElement = document.getElementById('message');
-        messageElement.textContent = `Your percentage is ${percentage}%. ${message}`;
-
-        // Speak the result
-        const text = `Your final score is ${score} out of ${totalQuestions}. Your percentage is ${percentage}%. ${message} thank you for playing Suvi, Sumi.`;
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';  // Set the language
-        utterance.rate = 1;        // Normal speaking rate
-        utterance.pitch = 1;       // Normal pitch
-        window.speechSynthesis.speak(utterance);
     }
 
     // Call the function when the page loads

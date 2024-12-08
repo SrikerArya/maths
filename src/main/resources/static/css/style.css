@@ -349,43 +349,164 @@ body {
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
-    .container {
-        padding: 20px; /* Adjust container padding for small screens */
+    body {
+        padding: 10px; /* Reduce body padding */
     }
 
+    .container {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        padding: 20px; /* Add space between items */
+    }
+
+    /* Ensure side elements stack vertically */
     .side {
-        width: 100% !important; /* Sidebar should take full width */
-        margin-top: 20px; /* Add some margin if necessary */
-        order: -1; /* Move the side content to the top */
+        width: 100%; /* Ensure full width */
+        margin-bottom: 10px; /* Add space below */
+        position: static; /* Prevent overlap due to positioning */
+        border-right: none;
     }
 
     .question-answer-container {
-        margin-top: 0; /* Adjust top margin for the question-answer container */
+        padding: 10px; /* Add padding for spacing */
+        margin-top: 0; /* Avoid unnecessary top margin */
+        clear: both; /* Clear any floated elements */
     }
 
-    /* Adjust clock and progress wrapper layout */
-    .clock-wrapper, .progress-wrapper {
-        padding: 10px; /* Reduce padding for mobile */
+    .content {
+        text-align: center; /* Center-align content for mobile */
+    }
+
+    .page-heading {
+        font-size: 28px; /* Reduce heading font size */
+        padding: 8px 15px; /* Adjust padding for mobile */
     }
 
     .question {
-        font-size: 2rem; /* Reduce font size for mobile screens */
+        font-size: 3rem; /* Adjust question font size */
+        margin-bottom: 15px; /* Add spacing below */
+    }
+
+    .clock {
+        width: 80px; /* Scale down the clock size */
+        height: 80px;
+        font-size: 20px; /* Adjust font size */
+        margin: 0 auto;
     }
 
     .answer-box {
-        font-size: 40px; /* Adjust font size for mobile input */
+        width: 100%; /* Full width input for easier interaction */
+        padding: 10px 0;
+        height: 60px; /* Reduce input height */
+        font-size: 50px; /* Adjust font size */
+    }
+
+    .label {
+        font-size: 18px; /* Reduce label font size */
+        margin-bottom: 5px;
     }
 
     .button {
-        font-size: 14px; /* Adjust button size for mobile */
+        width: 100%; /* Full width for buttons */
+        padding: 10px 20px; /* Adjust padding */
+        font-size: 16px; /* Adjust font size */
     }
 
-    /* Ensure the progress block is displayed correctly */
+    /* .button {
+        font-size: 14px;
+        padding: 8px 15px;
+    } */
+
+    .dropdown-button {
+        width: 100%; /* Make the dropdown take up the full width */
+        box-sizing: border-box; /* Include padding and border in width calculation */
+        font-size: 16px;
+    }
+
+    /*.question {
+        font-size: 2rem;
+        padding: 12px;  Adjust padding for mobile
+    }*/
+
+    /*.answer-box {
+        height: 50px;
+        font-size: 28px;  Adjust font size
+    }*/
+
+    .dropdown {
+        display: block; /* Stack dropdown elements vertically */
+        margin: 0 auto 15px auto; /* Add spacing between dropdowns */
+    }
+
+    .clock-wrapper,
+    .progress-wrapper {
+        text-align: center;
+    }
+
+    .progress-wrapper,
+    .clock-wrapper {
+        display: flex; /* Use Flexbox */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        width: 100%; /* Take full width */
+        border-bottom: none;
+    }
+
+    .clock-wrapper {
+        padding: 10px;
+    }
+
+    /*.clock {
+        margin: 0 auto;
+    }*/
+
+    .side .blok.icon-clock {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .progress-wrapper {
+        /* padding: 0;  /* to make the full width */
+        margin-top: 10px;
+    }
+
+    /*.progress-wrapper .row .blok {
+        font-size: 16px;
+        padding: 5px 10px;
+    }*/
+
     .progress-wrapper .row .blok {
-        font-size: 18px; /* Adjust font size for mobile */
+        font-size: 14px; /* Adjust progress font size */
+        padding: 10px 0; /* Add padding */
+        display: flex;
+        align-items: center; /* Align items vertically */
+        justify-content: center; /* Center content horizontally */
     }
 
-    #scoreText {
-        font-size: 16px; /* Adjust font size for score on mobile */
+    .modal-footer button {
+        padding: 8px 15px; /* Adjust button padding */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .modal-content {
+        width: 80%; /* Adjust modal width for small screens */
+        padding: 15px; /* Add padding */
+    }
+
+    .modal-header {
+        font-size: 18px; /* Reduce font size */
+        text-align: center; /* Center align header text */
+    }
+
+    .modal-body {
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    .modal-footer button {
+        width: 100%; /* Make buttons full-width */
+        padding: 10px; /* padding eg: 8px 15px; */
+        margin: 5px 0; /* Add spacing between buttons */
+        font-size: 14px; /* Adjust font size */
     }
 }
