@@ -7,6 +7,7 @@
     // Function to start/stop speech
     function toggleSpeech() {
         const speakerIcon = document.getElementById('quizSpeakerIcon');
+        const inQuestionText = document.getElementById("questionText");
 
         if (isSpeaking) {
             // Stop the speech
@@ -14,15 +15,15 @@
             speakerIcon.classList.remove('fa-volume-up');
             speakerIcon.classList.add('fa-volume-mute');
             isSpeaking = false;
-            submitAnswer();
             document.getElementById('answerInput').focus();
         } else {
             // Start speech
             speakerIcon.classList.remove('fa-volume-mute');
             speakerIcon.classList.add('fa-volume-up');
             isSpeaking = true;
-            submitAnswer();
+            console.log("Question in middle is ", inQuestionText.textContent)
             document.getElementById('answerInput').focus();
+            speak(inQuestionText.textContent);
         }
     }
 
