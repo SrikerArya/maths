@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
-    <link rel="stylesheet" href="/css/style.css?v=1.4">
+    <link rel="stylesheet" href="/css/style.css?v=1.5">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +15,7 @@
     <h1 class="page-heading">Quiz Over!</h1>
     <div class="content">
         <!-- Icon to toggle speech -->
-        <a id="listenResultsButton3" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #333">
+        <a id="listenResultsButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #333">
             <i id="speakerIcon" class="fas fa-volume-up" style="font-size: 24px;"></i>
         </a>
 
@@ -143,7 +143,7 @@
         speakerIcon.classList.add('fa-volume-up');
 
         // Attach event listener to toggle speech on icon click
-        const listenButton = document.getElementById('listenResultsButton3');
+        const listenButton = document.getElementById('listenResultsButton');
         listenButton.addEventListener('click', toggleSpeech);
     };
 </script>

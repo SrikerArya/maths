@@ -1,8 +1,30 @@
     let timeRemaining = window.initialTimeRemaining;
     let totalQuestionsAsked = 0; // Track the total number of questions asked
-    let audioEnabled = 0;
+    let isSpeaking = false; // Track if speech is active
 
     console.log('Time remaining started: ', timeRemaining);
+
+    // Function to start/stop speech
+    function toggleSpeech() {
+        const speakerIcon = document.getElementById('quizSpeakerIcon');
+
+        if (isSpeaking) {
+            // Stop the speech
+            window.speechSynthesis.cancel();
+            speakerIcon.classList.remove('fa-volume-up');
+            speakerIcon.classList.add('fa-volume-mute');
+            isSpeaking = false;
+            submitAnswer();
+            document.getElementById('answerInput').focus();
+        } else {
+            // Start speech
+            speakerIcon.classList.remove('fa-volume-mute');
+            speakerIcon.classList.add('fa-volume-up');
+            isSpeaking = true;
+            submitAnswer();
+            document.getElementById('answerInput').focus();
+        }
+    }
 
     function speak(text) {
         if ('speechSynthesis' in window) {
@@ -103,9 +125,9 @@
                 // Update the question and score
                 questionText.textContent = result.question;
 
-                console.log("Audio enabled ", audioEnabled > 0)
+                console.log("Audio status ", isSpeaking)
 
-                if (audioEnabled > 0) {
+                if (isSpeaking) {
                     // Speak the new question
                     speak(result.question);
                 }
@@ -113,6 +135,7 @@
                 totalQuestionsAsked++;
                 scoreText.textContent = `${result.score} / ${totalQuestionsAsked}`;
                 answerInput.value = ""; // Clear the input for the next question
+
             }
         } catch (error) {
             console.error('Error submitting answer:', error);
@@ -139,6 +162,7 @@
         const enableAudioButton = document.getElementById('enableAudioButton');
         const closeModalButton = document.getElementById('closeModalButton');
         const noButton = document.getElementById('noButton');
+        const speakerIcon = document.getElementById('quizSpeakerIcon');
 
         if (modal) {
             modal.style.display = 'block';
@@ -148,25 +172,36 @@
         // Trigger speech and close modal when user clicks "Enable Audio"
         enableAudioButton.addEventListener('click', function () {
             speak(questionText);
-            audioEnabled++;
-            console.log("Audio score ", audioEnabled)
+            isSpeaking = true;
+            console.log("When enableAudioButton clicked, status set to ", isSpeaking)
             modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
+            speakerIcon.classList.remove('fa-volume-mute');
+            speakerIcon.classList.add('fa-volume-up');
         });
 
         // Close modal when the "No" button is clicked
         noButton.addEventListener('click', function () {
+            isSpeaking = false;
             modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
+            speakerIcon.classList.remove('fa-volume-up');
+            speakerIcon.classList.add('fa-volume-mute');
         });
 
         // Close modal when the "X" button is clicked
         closeModalButton.addEventListener('click', function () {
+            isSpeaking = false;
             modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
+            speakerIcon.classList.remove('fa-volume-up');
+            speakerIcon.classList.add('fa-volume-mute');
         });
 
+        // Attach event listener to toggle speech on icon click
+        const listenButton = document.getElementById('listenQuizButton');
+        listenButton.addEventListener('click', toggleSpeech);
     };
