@@ -421,6 +421,76 @@ body {
     text-decoration: none;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 500,
+  'GRAD' 0,
+  'opsz' 40
+}
+
+/* Container for the button (optional, for alignment purposes) */
+.icon-button-container {
+  display: flex;
+  gap: 5px;
+  background-color: #f5f5f5; /* Light background for contrast */
+}
+
+/* Button styling */
+.mat-mdc-icon-button {
+  position: relative;
+  height: 60px; /* Circle height */
+  width: 60px; /* Circle width */
+  border: none;
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button hover effect */
+.mat-mdc-icon-button:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Optional active effect (when pressed) */
+.mat-mdc-icon-button:active {
+  transform: scale(0.95); /* Slight shrink effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Green button specific styles */
+.mat-mdc-icon-button.green {
+  background-color: #4caf50; /* Green */
+}
+
+.mat-mdc-icon-button.green:hover {
+  background-color: #388e3c; /* Darker green */
+}
+
+/* Orange button specific styles */
+.mat-mdc-icon-button.orange {
+  background-color: #ff9800; /* Orange */
+}
+
+.mat-mdc-icon-button.orange:hover {
+  background-color: #e65100; /* Darker orange */
+}
+
+.material-symbols-outlined {
+    font-size: 32px !important; /* Set the size of the icon */
+    color: #fff; /* Set the color (purple in this case) */
+    cursor: pointer; /* Make it clickable (optional) */
+    transition: transform 0.2s ease; /* Add smooth animations */
+}
+
+.material-symbols-outlined:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+}
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     body {

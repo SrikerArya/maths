@@ -21,7 +21,7 @@
             speakerIcon.classList.remove('fa-volume-mute');
             speakerIcon.classList.add('fa-volume-up');
             isSpeaking = true;
-            console.log("Question in middle is ", inQuestionText.textContent)
+            console.log("Question text is ", inQuestionText.textContent)
             document.getElementById('answerInput').focus();
             speak(inQuestionText.textContent);
         }
@@ -54,7 +54,6 @@
             if (timeRemaining <= 0) {
                 clearInterval(interval);
                 speak("Time is up!");
-//                alert("Time is up! Submit your score.");
 
                 // Prepare data to submit
                 const data = {

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
     <link rel="stylesheet" href="/css/style.css?v=1.5">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body>
 <div id="spinnerOverlay" class="overlay">
@@ -14,10 +14,14 @@
 <div class="container">
     <h1 class="page-heading">Quiz Over!</h1>
     <div class="content">
-        <!-- Icon to toggle speech -->
-        <a id="listenResultsButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #333">
-            <i id="speakerIcon" class="fas fa-volume-up" style="font-size: 24px;"></i>
-        </a>
+        <div class="icon-button-container">
+            <a class="mat-mdc-icon-button green" id="listenResultsButtonUp" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
+                <span id="speakerIconUp" class="material-symbols-outlined">volume_up</span>
+            </a>
+            <a class="mat-mdc-icon-button orange" id="listenResultsButtonOff" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
+                <span id="speakerIconOff" class="material-symbols-outlined">volume_off</span>
+            </a>
+        </div>
 
         <!-- Display score and message, without triggering speech -->
         <p class="question">
@@ -62,23 +66,12 @@
         messageElement.textContent = `You scored ${percentage}%. ${message}`;
     }
 
-    // Function to start/stop speech
-    function toggleSpeech() {
-        const speakerIcon = document.getElementById('speakerIcon');
+    function toggleSpeechUp() {
+        speakResult();
+    }
 
-        if (isSpeaking) {
-            // Stop the speech
-            window.speechSynthesis.cancel();
-            speakerIcon.classList.remove('fa-volume-mute');
-            speakerIcon.classList.add('fa-volume-up');
-            isSpeaking = false;
-        } else {
-            // Start speech
-            speakResult();
-            speakerIcon.classList.remove('fa-volume-up');
-            speakerIcon.classList.add('fa-volume-mute');
-            isSpeaking = true;
-        }
+    function toggleSpeechOff() {
+        window.speechSynthesis.cancel();
     }
 
     // Function to speak the final score and percentage
@@ -116,14 +109,6 @@
 
             // Start the speech
             window.speechSynthesis.speak(utterance);
-
-            // Add onend event listener to reset the icon after speech finishes
-            utterance.onend = function() {
-                // Reset the icon to unmuted (fa-volume-up)
-                speakerIcon.classList.remove('fa-volume-mute');
-                speakerIcon.classList.add('fa-volume-up');
-                isSpeaking = false;
-            };
         } else {
             console.error("Speech Synthesis API is not supported in this browser.");
         }
@@ -137,14 +122,18 @@
 
         displayMessage();
 
-        // Set initial icon to "unmute"
-        const speakerIcon = document.getElementById('speakerIcon');
-        speakerIcon.classList.remove('fa-volume-mute');
-        speakerIcon.classList.add('fa-volume-up');
-
         // Attach event listener to toggle speech on icon click
-        const listenButton = document.getElementById('listenResultsButton');
-        listenButton.addEventListener('click', toggleSpeech);
+        const speakerIconUp = document.getElementById('speakerIconUp');
+        speakerIconUp.addEventListener('click', toggleSpeechUp);
+        speakerIconUp.addEventListener('click', toggleSpeechUp => {
+          console.log("isSpeaking up clicked");
+        });
+
+        const speakerIconOff = document.getElementById('speakerIconOff');
+        speakerIconOff.addEventListener('click', toggleSpeechOff);
+        speakerIconOff.addEventListener('click', toggleSpeechOff => {
+          console.log("isSpeaking off clicked");
+        });
     };
 </script>
 </body>
