@@ -325,6 +325,10 @@ body {
     width: 100%;
     text-align: center;
     margin-top: 30px;
+    display: flex; /* Make it a flex container */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Optional: Center content vertically */
+    gap: 10px; /* Add spacing between <a> tags, if needed */
 }
 
 .modal-footer button {
@@ -432,8 +436,8 @@ body {
 /* Container for the button (optional, for alignment purposes) */
 .icon-button-container {
   display: flex;
-  gap: 5px;
-  background-color: #f5f5f5; /* Light background for contrast */
+  gap: 10px;
+  background-color: transparent;
 }
 
 /* Button styling */

@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css?v=1.5">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <title>Quiz</title>
     <!-- Inline Thymeleaf variables first -->
     <script>
@@ -64,8 +65,14 @@
             <p>To enjoy the experience, tap "Enable Audio" to start the voice guidance.</p>
         </div>
         <div class="modal-footer">
-            <button class="btn-green" id="enableAudioButton">Enable Audio</button>
-            <button class="btn-red" id="noButton">No</button>
+            <div class="icon-button-container">
+                <a class="mat-mdc-icon-button green" id="enableAudioButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
+                    <span id="speakerIconUp" class="material-symbols-outlined">volume_up</span>
+                </a>
+                <a class="mat-mdc-icon-button orange" id="noButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
+                    <span id="speakerIconOff" class="material-symbols-outlined">volume_off</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
