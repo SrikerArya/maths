@@ -142,6 +142,7 @@
 
         if (modal) {
             modal.style.display = 'block';
+            enableAudioButton.focus();
         }
 
         // Trigger speech and close modal when user clicks "Enable Audio"
