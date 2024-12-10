@@ -12,14 +12,12 @@
         if (isSpeaking) {
             // Stop the speech
             window.speechSynthesis.cancel();
-            speakerIcon.classList.remove('fa-volume-up');
-            speakerIcon.classList.add('fa-volume-mute');
+            speakerIcon.textContent = "volume_off";
             isSpeaking = false;
             document.getElementById('answerInput').focus();
         } else {
             // Start speech
-            speakerIcon.classList.remove('fa-volume-mute');
-            speakerIcon.classList.add('fa-volume-up');
+            speakerIcon.textContent = "volume_up";
             isSpeaking = true;
             console.log("Question text is ", inQuestionText.textContent)
             document.getElementById('answerInput').focus();
@@ -177,8 +175,7 @@
             modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
-            speakerIcon.classList.remove('fa-volume-mute');
-            speakerIcon.classList.add('fa-volume-up');
+            speakerIcon.textContent = "volume_up";
         });
 
         // Close modal when the "No" button is clicked
@@ -187,8 +184,7 @@
             modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
-            speakerIcon.classList.remove('fa-volume-up');
-            speakerIcon.classList.add('fa-volume-mute');
+            speakerIcon.textContent = "volume_off";
         });
 
         // Close modal when the "X" button is clicked
@@ -197,8 +193,7 @@
             modal.style.display = 'none';
             document.getElementById('answerInput').focus();
             startTimer(); // Start the timer when the page loads
-            speakerIcon.classList.remove('fa-volume-up');
-            speakerIcon.classList.add('fa-volume-mute');
+            speakerIcon.textContent = "volume_off";
         });
 
         // Attach event listener to toggle speech on icon click

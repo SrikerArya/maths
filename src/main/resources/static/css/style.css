@@ -5,6 +5,16 @@ body {
     padding: 0;
 }
 
+:focus {
+    outline: none;
+}
+
+/* Add custom focus styles for all screen sizes */
+:focus-visible {
+    outline: 1px solid #ff5722; /* Purple outline for focus */
+    box-shadow: 0 0 2px rgba(98, 0, 234, 0.5); /* Optional: Add glow effect */
+}
+
 .container {
     max-width: 1000px;
     min-height: 750px;
@@ -262,7 +272,12 @@ body {
 }
 
 #scoreText {
-    font-size: 20px; /* Adjust the font size for the score text */
+    font-size: 24px; /* Adjust the font size for the score text */
+}
+
+.icon-check {
+    font-size: 30px !important;
+    margin-right: 10px !important;
 }
 
 /* Modal Overlay */
@@ -453,6 +468,8 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
   transition: background-color 0.3s ease, transform 0.2s ease;
+  gap: 10px;
+  text-decoration: none;
 }
 
 /* Button hover effect */
@@ -485,7 +502,7 @@ body {
 }
 
 .material-symbols-outlined {
-    font-size: 32px !important; /* Set the size of the icon */
+    font-size: 30px !important; /* Set the size of the icon */
     color: #fff; /* Set the color (purple in this case) */
     cursor: pointer; /* Make it clickable (optional) */
     transition: transform 0.2s ease; /* Add smooth animations */
@@ -499,6 +516,11 @@ body {
 @media (max-width: 768px) {
     body {
         padding: 10px; /* Reduce body padding */
+    }
+
+    :focus-visible {
+        outline: 1px solid #ff5722; /* Orange outline for mobile */
+        box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); /* Optional: Add glow effect */
     }
 
     .container {
@@ -596,6 +618,18 @@ body {
         justify-content: center;
     }
 
+    .icon-check {
+        font-size: 20px !important;
+        margin-right: 10px !important;
+    }
+
+    .material-symbols-outlined {
+        font-size: 20px !important; /* Set the size of the icon */
+        color: #fff; /* Set the color (purple in this case) */
+        cursor: pointer; /* Make it clickable (optional) */
+        transition: transform 0.2s ease; /* Add smooth animations */
+    }
+
     .side .blok.icon-speaker {
         display: inline-flex;
         align-items: center;
@@ -639,5 +673,9 @@ body {
         padding: 10px; /* padding eg: 8px 15px; */
         margin: 5px 0; /* Add spacing between buttons */
         font-size: 14px; /* Adjust font size */
+    }
+
+    #scoreText {
+        font-size: 20px; /* Adjust the font size for the score text */
     }
 }

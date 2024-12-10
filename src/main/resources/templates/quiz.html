@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css?v=1.5">
+    <link rel="stylesheet" href="/css/style.css?v=1.6">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <title>Quiz</title>
@@ -11,7 +11,7 @@
         window.initialTimeRemaining = [[${timer}]]; // Define globally to avoid redeclaration in quiz.js
     </script>
     <!-- Include the external JavaScript file -->
-    <script th:src="@{/js/quiz.js?v=1.5}"></script>
+    <script th:src="@{/js/quiz.js?v=1.6}"></script>
 </head>
 <body>
 <div class="container">
@@ -21,14 +21,14 @@
             <div class="progress-wrapper">
                 <div class="row">
                     <div class="blok dark-orange icon-speaker">
-                        <a id="listenQuizButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
-                            <i id="quizSpeakerIcon" class="fas fa-volume-up" style="font-size: 24px;"></i>
+                        <a id="listenQuizButton" href="javascript:void(0);">
+                            <span id="quizSpeakerIcon" class="material-symbols-outlined">volume_up</span>
                         </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="blok blue icon-clock">
-                        <i class="fas fa-check-circle" style="font-size: 20px; margin-right: 10px;"></i>
+                        <i class="fas fa-check-circle icon-check"></i>
                         <span id="scoreText" th:text="${score}">0 / 0</span>
                     </div>
                 </div>
@@ -66,10 +66,10 @@
         </div>
         <div class="modal-footer">
             <div class="icon-button-container">
-                <a class="mat-mdc-icon-button green" id="enableAudioButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
+                <a class="mat-mdc-icon-button green" id="enableAudioButton" href="javascript:void(0);">
                     <span id="speakerIconUp" class="material-symbols-outlined">volume_up</span>
                 </a>
-                <a class="mat-mdc-icon-button orange" id="noButton" href="javascript:void(0);" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff">
+                <a class="mat-mdc-icon-button orange" id="noButton" href="javascript:void(0);">
                     <span id="speakerIconOff" class="material-symbols-outlined">volume_off</span>
                 </a>
             </div>
